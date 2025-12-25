@@ -29,34 +29,56 @@ function CreateGame() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          Create Game
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-900 via-purple-900 to-gray-900 p-4">
+      {/* Solid, modern card container */}
+      <div className="w-full max-w-md bg-gray-800 rounded-2xl shadow-2xl shadow-purple-500/20 border border-gray-700 p-8 text-center transform transition-all duration-500 hover:scale-105">
+        
+        {/* Heading with gradient text */}
+        <h2 className="text-3xl font-extrabold mb-8 bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          Create New Game
         </h2>
 
-        <input
-          type="text"
-          placeholder="Game Name"
-          className="w-full border p-2 rounded mb-3"
-          value={gameName}
-          onChange={(e) => setGameName(e.target.value)}
-        />
+        {/* Form container with vertical spacing */}
+        <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); handleCreateGame(); }}>
+          
+          {/* Game Name Input Group */}
+          <div className="text-left">
+            <label htmlFor="gameName" className="block text-sm font-medium text-gray-300 mb-2">
+              Game Name
+            </label>
+            <input
+              id="gameName"
+              type="text"
+              placeholder="e.g., Sprint 23 Planning"
+              className="w-full bg-gray-700/50 border border-gray-600 text-white placeholder-gray-400 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent block p-3 transition-all duration-200"
+              value={gameName}
+              onChange={(e) => setGameName(e.target.value)}
+            />
+          </div>
 
-        <input
-          type="text"
-          placeholder="Your Name"
-          className="w-full border p-2 rounded mb-4"
-          value={playerName}
-          onChange={(e) => setPlayerName(e.target.value)}
-        />
+          {/* Player Name Input Group */}
+          <div className="text-left">
+            <label htmlFor="playerName" className="block text-sm font-medium text-gray-300 mb-2">
+              Your Name
+            </label>
+            <input
+              id="playerName"
+              type="text"
+              placeholder="e.g., Jane Doe"
+              className="w-full bg-gray-700/50 border border-gray-600 text-white placeholder-gray-400 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent block p-3 transition-all duration-200"
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+            />
+          </div>
 
-        <button
-          onClick={handleCreateGame}
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-        >
-          Create Game
-        </button>
+          {/* Call-to-action button with enhanced hover effects */}
+          <button
+            type="submit"
+            className="w-full bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-purple-500/50 transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:from-blue-400 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+          >
+            Create & Join Game
+          </button>
+        </form>
       </div>
     </div>
   );

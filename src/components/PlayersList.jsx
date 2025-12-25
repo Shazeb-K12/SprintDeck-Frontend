@@ -136,7 +136,7 @@ function PlayersList({ players, revealed }) {
   };
 
   return (
-    <div className="bg-white rounded shadow p-4 mb-6">
+    <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-700/50 p-6">
       <div className="flex flex-wrap justify-center gap-6">
         {players.map((player, index) => {
           const hasSelected =
@@ -148,22 +148,26 @@ function PlayersList({ players, revealed }) {
               key={index}
               className="flex flex-col items-center relative group"
             >
-              {/* CARD */}
+              {/* PLAYER CARD */}
               <div
                 data-player-id={player.socketId}
-                className={`w-24 h-32 rounded-lg flex items-center justify-center text-3xl font-bold transition-all
-                ${
-                  revealed
-                    ? "bg-white border-2 border-gray-700"
-                    : hasSelected
-                    ? "bg-green-100 border-2 border-green-500 shadow-lg scale-105"
-                    : "bg-gray-100 border border-gray-300"
-                }`}
+                className={`
+                  w-18 h-25 rounded-xl flex items-center justify-center text-4xl font-bold transition-all duration-300 border-2
+                  ${
+                    revealed
+                      ? 'bg-gray-700 text-white border-gray-600'
+                      : hasSelected
+                      ? 'bg-linear-to-br from-blue-900/50 to-purple-900/50 border-blue-500 shadow-lg shadow-blue-500/30 scale-105'
+                      : 'bg-gray-700/30 border-gray-600'
+                  }
+                `}
               >
                 {revealed ? (
-                  player.selectedCard ?? "-"
+                  <span className="bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-extrabold">
+                    {player.selectedCard ?? '-'}
+                  </span>
                 ) : hasSelected ? (
-                  ""
+                  <svg className="w-7 h-7 text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                 ) : (
                   "🤔"
                 )}
@@ -171,27 +175,27 @@ function PlayersList({ players, revealed }) {
 
               {/* 👇 EMOJI PICKER */}
               <div
-                className="absolute -bottom-10 opacity-0 group-hover:opacity-100
-                           transition-opacity duration-200
-                           bg-white shadow-md rounded-full px-3 py-1 flex gap-2"
+                className="absolute -bottom-2 z-10 opacity-0 group-hover:opacity-100
+                           transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto
+                           bg-gray-900 shadow-xl rounded-full px-3 py-2 flex gap-2 border border-gray-700"
               >
                 {emojiList.map((emoji, i) => (
                   <span
                     key={i}
                     onClick={() => sendEmoji(emoji, player.socketId)}
-                    className="cursor-pointer hover:scale-125 transition-transform"
+                    className="cursor-pointer hover:scale-125 transition-transform duration-200 text-xl"
                   >
                     {emoji}
                   </span>
                 ))}
               </div>
 
-              {/* NAME */}
-              <div className="mt-2 text-center">
-                <p className="text-sm font-medium">{player.name}</p>
+              {/* PLAYER NAME & ROLE */}
+              <div className="mt-3 text-center">
+                <p className="text-sm font-semibold text-gray-200">{player.name}</p>
 
                 {player.isHost && (
-                  <span className="text-xs text-blue-600 font-semibold">
+                  <span className="text-xs text-purple-400 font-bold">
                     HOST
                   </span>
                 )}
