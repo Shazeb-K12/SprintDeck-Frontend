@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+input,
+textarea {
+  caret-color: auto;
+}
+
+div,
+p,
+span,
+button {
+  caret-color: transparent;
+}

@@ -32,7 +32,9 @@ function JoinGame() {
 
           navigate(`/game-room/${roomId}`);
         } else {
-          setError(res.message || "Failed to join the game. Please check the Room ID.");
+          setError(
+            res.message || "Failed to join the game. Please check the Room ID."
+          );
         }
       }
     );
@@ -41,13 +43,12 @@ function JoinGame() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-900 via-purple-900 to-gray-900 p-4">
       {/* Solid, modern card container */}
-      <div className="w-full max-w-md bg-gray-800 rounded-2xl shadow-2xl shadow-purple-500/20 border border-gray-700 p-8 text-center transform transition-all duration-500 hover:scale-105">
-        
+      <div className="w-full max-w-md bg-gray-800 rounded-2xl shadow-2xl shadow-purple-500/20 border border-gray-700 p-8 text-center">
         {/* Heading with gradient text */}
         <h1 className="text-3xl font-extrabold mb-2 bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
           Join Game
         </h1>
-        
+
         {/* Room ID display */}
         <p className="text-gray-500 font-mono text-sm mb-8">
           Room ID: {roomId || "Not provided"}
@@ -55,10 +56,12 @@ function JoinGame() {
 
         {/* Form container with vertical spacing */}
         <form className="space-y-6" onSubmit={handleSubmit}>
-          
           {/* Player Name Input Group */}
           <div className="text-left">
-            <label htmlFor="playerName" className="block text-sm font-medium text-gray-300 mb-2">
+            <label
+              htmlFor="playerName"
+              className="block text-sm font-medium text-gray-300 mb-2"
+            >
               Your Name
             </label>
             <input
@@ -74,22 +77,37 @@ function JoinGame() {
 
           {/* Custom Styled Checkbox Group */}
           <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="spectator-checkbox"
-              className="hidden peer"
-              checked={isSpectator}
-              onChange={(e) => setIsSpectator(e.target.checked)}
-            />
-            <label
-              htmlFor="spectator-checkbox"
-              className="flex items-center cursor-pointer text-gray-300 select-none"
-            >
-              <div className="relative">
-                <div className="w-5 h-5 bg-gray-600 rounded-md peer-checked:bg-linear-to-r peer-checked:from-blue-500 peer-checked:to-purple-600 transition-all duration-200 flex items-center justify-center">
-                  <svg className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                </div>
+            <label className="flex items-center cursor-pointer text-gray-300 select-none">
+              <input
+                type="checkbox"
+                className="peer hidden"
+                checked={isSpectator}
+                onChange={(e) => setIsSpectator(e.target.checked)}
+              />
+
+              <div
+                className="w-5 h-5 bg-gray-600 rounded-md
+                    peer-checked:bg-linear-to-r
+                    peer-checked:from-blue-500
+                    peer-checked:to-purple-600
+                    transition-all duration-200
+                    flex items-center justify-center"
+              >
+                <svg
+                  className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={3}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
               </div>
+
               <span className="ml-3 text-sm">Join as Spectator</span>
             </label>
           </div>
@@ -104,7 +122,7 @@ function JoinGame() {
           {/* Call-to-action button with enhanced hover effects */}
           <button
             type="submit"
-            className="w-full bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-purple-500/50 transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:from-blue-400 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50"
+            className="w-full bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-purple-500/50 transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:from-blue-400 hover:to-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 cursor-pointer"
           >
             Join Game Room
           </button>

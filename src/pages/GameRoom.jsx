@@ -85,7 +85,7 @@ function GameRoom() {
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-700/50 py-2 px-5 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div>
             <h1 className="text-3xl font-extrabold bg-linear-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Game Room
+              {room?.gameName}
             </h1>
             <p className="text-gray-400 font-mono text-sm">ID: {gameId}</p>
           </div>
